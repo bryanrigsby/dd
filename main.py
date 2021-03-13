@@ -49,13 +49,17 @@ def run_program():
         print(info)
 
     elif 'joke' in command:
-        talk(pyjokes.get_joke('en', 'chuck'))
+        talk(pyjokes.get_joke('en', 'all'))
 
     elif 'goodbye' in command:
-        talk('Sayonara sucka')
+        talk('Peace out')
+        exit()
 
     elif 'hello' in command:
-        talk('Hola hombre')
+        talk('What up')
+
+    elif 'do' in command:
+        talk('I can tell time, search for info, play YouTube videos, and tell jokes')
 
     else:
         talk('I do not understand')
@@ -63,6 +67,6 @@ def run_program():
 
 
 
-print('Hello. How can I help you?')
+talk('Hello. How can I help you?')
 while True:
     run_program()
