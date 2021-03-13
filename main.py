@@ -5,10 +5,26 @@ import datetime
 import wikipedia
 import pyjokes
 
+datetime_now = datetime.datetime.now()
+test = datetime.datetime(datetime_now.year, datetime_now.month, datetime_now.day, 17, 00, 1)
+midnight = datetime.datetime(datetime_now.year, datetime_now.month, datetime_now.day, 0, 00, 1)
+noon = datetime.datetime(datetime_now.year, datetime_now.month, datetime_now.day, 12, 00, 00)
+fivePM = datetime.datetime(datetime_now.year, datetime_now.month, datetime_now.day, 17, 00, 00)
+tod_responses = ['Good Morning, Sir', 'Good Afternoon, Sir', 'Good Evening, Sir']
+
 listener = sr.Recognizer()
 engine = pyttsx3.init()
 voices = engine.getProperty('voices')
-engine.setProperty('voice', voices[1].id) # 0 is male, 1 is female
+engine.setProperty('voice', 'com.apple.speech.synthesis.voice.rishi')
+
+## get list of voices
+# for voice in voices:
+#     print("Voice:")
+#     print(" - ID: %s" % voice.id)
+#     print(" - Name: %s" % voice.name)
+#     print(" - Languages: %s" % voice.languages)
+#     print(" - Gender: %s" % voice.gender)
+#     print(" - Age: %s" % voice.age)
 
 # engine.say('Hello. I am Program. How may I be of service?')
 # engine.runAndWait()
@@ -24,15 +40,20 @@ def take_command():
             voice = listener.listen(source)
             command = listener.recognize_google(voice)
             command = command.lower()
-            if 'dd' in command:
-                command = command.replace('dd', '')
     except:
         pass
     return command
 
+
+
+
 def run_program():
     command = take_command()
-    if 'play' in command:
+    if 'dd' in command:
+        command = command.replace('dd', '')
+
+
+    elif 'play' in command:
         song = command.replace('play', '')
         talk('playing' + song)
         pywhatkit.playonyt(song)
@@ -55,9 +76,6 @@ def run_program():
         talk('Peace out')
         exit()
 
-    elif 'hello' in command:
-        talk('What up')
-
     elif 'do' in command:
         talk('I can tell time, search for info, play YouTube videos, and tell jokes')
 
@@ -67,6 +85,5 @@ def run_program():
 
 
 
-talk('Hello. How can I help you?')
 while True:
     run_program()
