@@ -1,41 +1,20 @@
-from tkinter import *
+import tkinter as tk
+import os
 from PIL import ImageTk, Image
 
 #main window
-root = Tk()
-root.title("DD")
+window= tk.Tk()
+window.title("DD")
 
-#image
-my_img = ImageTk.PhotoImage(Image.open("blackhole.jfif"))
-my_label = Label(image=my_img)
-my_label.pack()
+label = tk.Label(text="Welcome Sir")
+label.pack()
 
+#restart button
+def restart():
+    os.system('open /Users/bryanrigsby/Documents/GitHub/dd/dist/main')
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#quit button
-button_quit = Button(root, text="Exit Program", command=root.quit)
-button_quit.pack()
+button_restart = tk.Button(window, text="Restart", fg="black", command=restart)
+button_restart.pack()
 
 #runs application until it is stopped
-root.mainloop()
+window.mainloop()

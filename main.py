@@ -5,6 +5,7 @@ import datetime
 import wikipedia
 import pyjokes
 
+
 datetime_now = datetime.datetime.now()
 test = datetime.datetime(datetime_now.year, datetime_now.month, datetime_now.day, 17, 00, 1)
 midnight = datetime.datetime(datetime_now.year, datetime_now.month, datetime_now.day, 0, 00, 1)
@@ -48,14 +49,25 @@ def take_command():
 
 
 def run_program():
+    talk("uhhhhhhhhhh helllllllllo")
+    print('hello')
     command = take_command()
     if 'dd' in command:
         command = command.replace('dd', '')
-
+        if (datetime_now >= midnight and datetime_now < noon):
+            talk('good morning, sir')
+            print('i am talking')
+        elif (datetime_now >= noon and datetime_now < fivePM):
+            talk('good afternoon, sir')
+            print('i am talking')
+        elif (datetime_now >= fivePM):
+            talk('good evening, sir')
+            print('i am talking')
 
     elif 'play' in command:
         song = command.replace('play', '')
         talk('playing' + song)
+        print('i am talking')
         pywhatkit.playonyt(song)
 
     elif 'time' in command:
@@ -71,16 +83,20 @@ def run_program():
 
     elif 'joke' in command:
         talk(pyjokes.get_joke('en', 'all'))
+        print('i am talking')
 
     elif 'goodbye' in command:
         talk('Peace out')
+        print('i am talking')
         exit()
 
     elif 'do' in command:
         talk('I can tell time, search for info, play YouTube videos, and tell jokes')
+        print('i am talking')
 
     else:
         talk('I do not understand')
+        print('i am talking')
 
 
 
